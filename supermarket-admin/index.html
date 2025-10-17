@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACHETECH Admin Dashboard</title>
+  <link rel="stylesheet" href="../supermarket-css/style.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <h2>ACHETECH</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="active">Dashboard</a>
+        <a href="#">Add Product</a>
+        <a href="#">View Stock</a>
+        <a href="#">Sales</a>
+        <a href="#">Receipt</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="dark-toggle">🌙</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="topbar">
+        <button id="menu-btn">☰</button>
+        <h1>Admin Dashboard</h1>
+      </header>
+
+      <section class="stats">
+        <div class="stat-card">
+          <h3>Total Stock Value</h3>
+          <p class="amount">₦0</p>
+        </div>
+        <div class="stat-card">
+          <h3>Total Sales</h3>
+          <p class="amount">₦0</p>
+        </div>
+        <div class="stat-card">
+          <h3>Low Stock Alerts</h3>
+          <p class="amount">0 Items</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/supermarket-js/main.js"></script>
+</body>
+</html>
