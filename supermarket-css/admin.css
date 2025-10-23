@@ -6,6 +6,7 @@ body {
   margin: 0;
   padding: 0;
   transition: background 0.3s, color 0.3s;
+
 }
 
 header {
@@ -117,7 +118,7 @@ header {
   left: -260px;
   width: 240px;
   height: 100vh;
-  background: #fff;
+  background: #DEE0DF;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   transition: left 0.3s;
@@ -139,7 +140,7 @@ header {
 }
 
 .sidebar a:hover {
-  background: #0078ff;
+  background: linear-gradient(90deg, #4C01FE 100%, purple 0%);
   
 }
 
@@ -161,7 +162,7 @@ header {
 }
 
 .close-btn:hover {
-  color: #ff0000; /* red hover for clarity */
+  color: #000000; /* red hover for clarity */
 }
 
 
@@ -232,36 +233,48 @@ header {
 
 /* ===== DARK MODE ===== */
 body.dark-mode {
-  background: #0b1726;
+  background: #140045;
   color: #eee;
 }
 
 body.dark-mode header,
 body.dark-mode .sidebar,
-
 body.dark-mode .recent-products li {
-  background: #14253d;
+  background: rgb(1, 1, 46);
   color: #fff;
 }
 
 body.dark-mode .nav-links {
-  background: #101d31;
+  background: linear-gradient(90deg, #4C01FE 100%, purple 0%);
+  /* Blue–purple gradient */
+  transition: background 0.3s ease-in-out;
+  flex-wrap: wrap;
+  border-radius: 0 0 10px 10px;
 }
 body.dark-mode .nav-links a:hover {
-  background-color: black;
+  background-color: #000000;
   color: #fff;
 }
-body.dark-mode .nav-links{
-background: linear-gradient(90deg, #4b6cb7 0%, purple 100%);
+.body.dark-mode .dashboard {
+  background: rgb(1, 1, 46);
+  color: #fff;
+  border: 1px solid #fff;
 }
 
 body.dark-mode .card{
-  background: black;
+  background: #000000;
 }
 body.dark-mode .recent-products{
-  background: black;
+  background: #000000;
+}
+.body.dark-mode .sidebar{
+  background: rgb(1, 1, 46);
 }
 
+body.dark-mode .sidebar a:hover {
+  background: #000000FE;
+  color: #fff;
+}
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .nav-links {
