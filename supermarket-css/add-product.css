@@ -8,15 +8,15 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-/* ===== HEADER ===== */
 header {
   background: #DEE0DF;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 10;
 }
 
+/* ===== TOP BAR ===== */
 .top-bar {
   display: flex;
   justify-content: space-between;
@@ -24,7 +24,6 @@ header {
   padding: 12px 30px;
 }
 
-/* ===== LOGO ===== */
 .logo-container {
   display: flex;
   align-items: center;
@@ -40,7 +39,7 @@ header {
 .logo-text h1 {
   font-size: 1.3rem;
   margin: 0;
-  color: purple;
+  color: rgba(175, 12, 175, 0.808);
 }
 
 .logo-text p {
@@ -80,12 +79,20 @@ header {
   margin-right: 6px;
 }
 
-
-/* ===== CONTROLS ===== */
+/* ===== RIGHT CONTROLS ===== */
 .right-controls {
   display: flex;
   align-items: center;
   gap: 15px;
+}
+
+.dark-toggle {
+  background: #DEE0DF;
+  color: white;
+  border: 1px solid #000;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .menu-toggle {
@@ -93,14 +100,6 @@ header {
   background: transparent;
   border: none;
   font-size: 22px;
-  cursor: pointer;
-}
-
-.dark-toggle {
-  background: #DEE0DF;
-  border: 1px solid #000;
-  border-radius: 6px;
-  padding: 6px;
   cursor: pointer;
 }
 
@@ -135,8 +134,8 @@ header {
   background: #DEE0DF;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  transition: left 0.3s ease;
-  z-index: 200;
+  transition: left 0.3s;
+  z-index: 20;
 }
 
 .sidebar.active {
@@ -147,178 +146,165 @@ header {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #333;
   padding: 12px;
-  border-radius: 6px;
   text-decoration: none;
+  color: #333;
+  border-radius: 6px;
 }
 
 .sidebar a:hover,
 .sidebar a.active {
   background: linear-gradient(90deg, #4C01FE, purple);
   color: #fff;
+  font-weight: 600;
 }
 
+.sidebar .dark-toggle {
+  width: 100%;
+  margin-top: 15px;
+}
 
-/* Sidebar close button */
 .close-btn {
   background: none;
   border: none;
   font-size: 22px;
   color: #333;
-  position: absolute;
-  top: 12px;
-  right: 12px;
   cursor: pointer;
-  z-index: 300;
-  pointer-events: auto;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 25;
 }
 
-.close-btn:hover {
-  color: #000;
-}
-
-/* ===== DASHBOARD ===== */
-.dashboard {
+/* ===== ADD PRODUCT FORM ===== */
+.add-product {
+  max-width: 600px;
+  margin: 40px auto;
   padding: 25px;
-  text-align: center;
-  margin-left: 40px;
-}
-
-.dashboard h2 {
-  margin-left: 40px;
-  color: #333;
-}
-
-.welcome-text {
-  font-size: 1.1rem;
-  color: #555;
-  font-weight: 300;
-  margin-bottom: 0px;
-  margin-left: 40px;
-}
-
-/* ===== STATS CARDS ===== */
-.stats {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-  margin-top: 25px;
-}
-
-.card {
   background: linear-gradient(90deg, #4C01FE, purple);
-  padding: 25px 20px;
-  width: 220px;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
   color: #fff;
-  text-align: center;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
 }
 
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.add-product h2 {
+  margin-bottom: 15px;
 }
 
-.card i {
-  font-size: 30px;
-  color: #DEE0DF;
-  margin-bottom: 10px;
+.add-product p {
+  margin-bottom: 20px;
+  color: #f0f0f0;
 }
 
-.card h3 {
-  font-size: 1.1rem;
-  margin: 8px 0 4px;
+.add-product .form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
-.card p {
-  font-size: 0.9rem;
-  color: #f8f8f8;
+.add-product label {
+  margin-bottom: 5px;
+  font-weight: 500;
 }
 
-/* ===== RECENT PRODUCTS ===== */
-.recent-products {
-  margin-top: 30px;
-  padding: 40px;
-  border-radius: 12px;
-  border: 1px solid #000;
-  background-color: #E4E6E5;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+.add-product input,
+.add-product select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.recent-products h3 {
-  text-align: center;
-  color: #333;
-}
-
-.recent-products ul {
-  list-style: none;
-  padding: 0;
-}
-
-.recent-products li {
-  background: #fff;
-  margin-bottom: 8px;
-  padding: 10px 15px;
+.add-product button {
+  margin-top: 15px;
+  padding: 12px;
+  width: 100%;
+  font-size: 1rem;
+  border: none;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  color: #4C01FE;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-product button:hover {
+  background: #4C01FE;
+  color: #fff;
 }
 
 /* ===== DARK MODE ===== */
 body.dark-mode {
   background: #140045;
-  color: #fff;
+  color: #eee;
 }
 
 body.dark-mode header,
 body.dark-mode .sidebar,
-body.dark-mode .recent-products {
+body.dark-mode .recent-products li {
   background: rgb(1, 1, 46);
   color: #fff;
 }
 
 body.dark-mode .nav-links {
-  background: linear-gradient(90deg, #6a00ff, #9b00cc);
+  background: linear-gradient(90deg, #4C01FE 100%, purple 0%);
 }
 
 body.dark-mode .nav-links a:hover {
-  background: #000;
+  background-color: #000000;
   color: #fff;
 }
 
-body.dark-mode .card {
-  background: linear-gradient(90deg, #3c00b9, #5a00a3);
-  color: #fff;
-}
-
-body.dark-mode .recent-products li {
-  background: #000;
+body.dark-mode .sidebar a:hover {
+  background: #000000FE;
   color: #fff;
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  /* Hide navbar */
-  .nav-links { display: none; }
-
-  /* Show hamburger */
-  .menu-toggle { display: block; }
-
-
-  
+  .nav-links {
+    display: none;
+  }
   /* Hide top dark mode + logout */
   #darkModeToggle,
   header .logout-btn {
     display: none !important;
   }
+  
 
-  /* Sidebar dark + logout visible */
+  .menu-toggle {
+    display: block;
+  }
+
+  .right-controls {
+    gap: 10px;
+  }
+
+  #welcomeText {
+    font-size: 0.9rem;
+  }
+
+  /* Hide header dark mode button on mobile */
+  .dark-toggle {
+    display: none;
+  }
+
+  /* Sidebar adjustments */
+  .sidebar {
+    width: 50%;
+    left: -100%;
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
   #sidebarDarkMode,
-  aside .logout-btn {
+  .sidebar .logout-btn {
     display: block !important;
     width: 100%;
     margin-top: 10px;
@@ -326,43 +312,53 @@ body.dark-mode .recent-products li {
     padding: 10px;
   }
 
-  /* Hamburger under logo */
-  .top-bar {
-    flex-direction: column;
-    align-items: flex-start;
+  .sidebar a {
+    font-size: 0.95rem;
   }
 
-  .logo-container {
-    width: 100%;
-    justify-content: flex-start;
-    position: relative;
-  }
-
-  .menu-toggle {
-    margin-top: 8px;
-    align-self: flex-start;
-    font-size: 24px;
-    position: absolute;
-    right: 15px;
-    top: 10px;
-  }
-
-/* Adjust layout */
-  .view-stock, .dashboard {
-    margin: 15px;
+  main.dashboard {
+    margin: 20px;
     padding: 10px;
   }
 
+  .add-product {
+    margin: 20px auto;
+    padding: 20px;
+    width: 90%;
+  }
+}
 
-  /* Table or list scaling */
-  table {
-    width: 100%;
-    font-size: 12px;
+/* Extra small screens */
+@media (max-width: 480px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 15px;
   }
 
-  th, td {
-    padding: 6px 4px;
-    text-align: center;
-    word-wrap: break-word;
+  .right-controls {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  #welcomeText {
+    font-size: 0.85rem;
+  }
+
+  .logo-text h1 {
+    font-size: 1rem;
+  }
+
+  .logo-text p {
+    font-size: 0.7rem;
+  }
+
+  .add-product h2 {
+    font-size: 1.2rem;
+  }
+
+  .add-product p {
+    font-size: 0.85rem;
   }
 }

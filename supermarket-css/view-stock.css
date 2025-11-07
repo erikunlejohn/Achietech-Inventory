@@ -1,4 +1,4 @@
-/* ===== GLOBAL STYLES ===== */
+/* ===== BASE ===== */
 body {
   font-family: "Poppins", sans-serif;
   background: #DEE0DF;
@@ -80,7 +80,6 @@ header {
   margin-right: 6px;
 }
 
-
 /* ===== CONTROLS ===== */
 .right-controls {
   display: flex;
@@ -102,6 +101,18 @@ header {
   border-radius: 6px;
   padding: 6px;
   cursor: pointer;
+}
+
+/* ===== ADMIN HEADER ===== */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  margin: 12px;
 }
 
 /* ===== LOGOUT BUTTON ===== */
@@ -135,8 +146,9 @@ header {
   background: #DEE0DF;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  transition: left 0.3s ease;
+  transition: left 0.3s;
   z-index: 200;
+  overflow: visible;
 }
 
 .sidebar.active {
@@ -159,7 +171,6 @@ header {
   color: #fff;
 }
 
-
 /* Sidebar close button */
 .close-btn {
   background: none;
@@ -174,99 +185,69 @@ header {
   pointer-events: auto;
 }
 
-.close-btn:hover {
-  color: #000;
+/* ===== VIEW STOCK ===== */
+.view-stock {
+  padding: 30px;
+  max-width: 1100px;
+  margin: 40px auto;
+  background: #E4E6E5;
+  border-radius: 12px;
 }
 
-/* ===== DASHBOARD ===== */
-.dashboard {
-  padding: 25px;
+.view-stock h2 {
   text-align: center;
-  margin-left: 40px;
-}
-
-.dashboard h2 {
-  margin-left: 40px;
   color: #333;
 }
 
-.welcome-text {
-  font-size: 1.1rem;
-  color: #555;
-  font-weight: 300;
-  margin-bottom: 0px;
-  margin-left: 40px;
-}
-
-/* ===== STATS CARDS ===== */
-.stats {
+.controls {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 25px;
-  margin-top: 25px;
+  gap: 15px;
+  margin: 20px 0;
+  flex-wrap: wrap;
 }
 
-.card {
-  background: linear-gradient(90deg, #4C01FE, purple);
-  padding: 25px 20px;
-  width: 220px;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  color: #fff;
-  text-align: center;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+.controls input,
+.controls select {
+  padding: 20px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+/* ===== TABLE ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.card i {
-  font-size: 30px;
-  color: #DEE0DF;
-  margin-bottom: 10px;
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
 }
 
-.card h3 {
-  font-size: 1.1rem;
-  margin: 8px 0 4px;
+th {
+  background: #4C01FE;
+  color: white;
 }
 
-.card p {
-  font-size: 0.9rem;
-  color: #f8f8f8;
+.edit-btn,
+.delete-btn {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
 }
 
-/* ===== RECENT PRODUCTS ===== */
-.recent-products {
-  margin-top: 30px;
-  padding: 40px;
-  border-radius: 12px;
-  border: 1px solid #000;
-  background-color: #E4E6E5;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-}
+.edit-btn { background: #007bff; }
+.delete-btn { background: #dc3545; }
 
-.recent-products h3 {
-  text-align: center;
-  color: #333;
-}
-
-.recent-products ul {
-  list-style: none;
-  padding: 0;
-}
-
-.recent-products li {
-  background: #fff;
-  margin-bottom: 8px;
-  padding: 10px 15px;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-}
+.edit-btn:hover { background: #0056b3; }
+.delete-btn:hover { background: #b02a37; }
 
 /* ===== DARK MODE ===== */
 body.dark-mode {
@@ -276,9 +257,18 @@ body.dark-mode {
 
 body.dark-mode header,
 body.dark-mode .sidebar,
-body.dark-mode .recent-products {
+body.dark-mode .view-stock {
   background: rgb(1, 1, 46);
   color: #fff;
+}
+
+body.dark-mode table {
+  background: #000;
+  color: #fff;
+}
+
+body.dark-mode th {
+  background: #4C01FE;
 }
 
 body.dark-mode .nav-links {
@@ -286,16 +276,6 @@ body.dark-mode .nav-links {
 }
 
 body.dark-mode .nav-links a:hover {
-  background: #000;
-  color: #fff;
-}
-
-body.dark-mode .card {
-  background: linear-gradient(90deg, #3c00b9, #5a00a3);
-  color: #fff;
-}
-
-body.dark-mode .recent-products li {
   background: #000;
   color: #fff;
 }
@@ -308,8 +288,65 @@ body.dark-mode .recent-products li {
   /* Show hamburger */
   .menu-toggle { display: block; }
 
+  /* View stock */
+  .view-stock {
+    margin: 15px;
+    padding: 10px;
+  }
 
-  
+  /* Table adjustments */
+  table {
+    width: 100%;
+    font-size: 12px;
+  }
+
+  th, td {
+    padding: 6px 4px;
+    text-align: center;
+    word-wrap: break-word;
+  }
+
+  th:nth-child(1), td:nth-child(1) { width: 5%; }
+  th:nth-child(2), td:nth-child(2) { width: 20%; }
+  th:nth-child(3), td:nth-child(3) { width: 18%; }
+  th:nth-child(4), td:nth-child(4) { width: 17%; }
+  th:nth-child(5), td:nth-child(5) { width: 10%; }
+  th:nth-child(6), td:nth-child(6) { width: 20%; }
+  th:nth-child(7), td:nth-child(7) { width: 10%; }
+
+  .edit-btn, .delete-btn {
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+
+  /* Title */
+  .view-stock h2 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  /* Controls stack */
+  .controls {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .controls input,
+  .controls select {
+    width: 90%;
+    font-size: 13px;
+  }
+
+  /* Welcome text */
+  #welcomeText {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin: 8px 0;
+    font-size: 0.95rem;
+  }
+
   /* Hide top dark mode + logout */
   #darkModeToggle,
   header .logout-btn {
@@ -346,23 +383,5 @@ body.dark-mode .recent-products li {
     right: 15px;
     top: 10px;
   }
-
-/* Adjust layout */
-  .view-stock, .dashboard {
-    margin: 15px;
-    padding: 10px;
-  }
-
-
-  /* Table or list scaling */
-  table {
-    width: 100%;
-    font-size: 12px;
-  }
-
-  th, td {
-    padding: 6px 4px;
-    text-align: center;
-    word-wrap: break-word;
-  }
 }
+/* ===== END OF FILE ===== */

@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ACHETECH — View Stock</title>
+  <title>ACHETECH — Sell Item</title>
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
-  <link rel="stylesheet" href="../supermarket-css/view-stock.css" />
+  <link rel="stylesheet" href="../supermarket-css/sales.css" />
 </head>
 <body>
   <!-- ===== HEADER ===== -->
@@ -33,8 +33,8 @@
     <nav class="nav-links">
     <a href="/supermarket-admin/admin.html"><i class="fas fa-chart-line"></i> Dashboard</a>
       <a href="/supermarket-admin/add-product.html"><i class="fas fa-plus-circle"></i> Add Product</a>
-      <a href="/supermarket-admin/view-stock.html" class="active"><i class="fas fa-boxes"></i> View Stock</a>
-      <a href="/supermarket-admin/sales.html"><i class="fas fa-shopping-cart"></i> Sell Item</a>
+      <a href="/supermarket-admin/view-stock.html"><i class="fas fa-boxes"></i> View Stock</a>
+      <a href="/supermarket-admin/sales.html" class="active"><i class="fas fa-shopping-cart"></i> Sell Item</a>
       <a href="/supermarket-admin/add-staff.html"><i class="fas fa-user-plus"></i> Add Staff</a>
     </nav>
   </header>
@@ -53,46 +53,52 @@
 
     <a href="/supermarket-admin/admin.html"><i class="fas fa-chart-line"></i> Dashboard</a>
     <a href="/supermarket-admin/add-product.html"><i class="fas fa-plus-circle"></i> Add Product</a>
-    <a href="/supermarket-admin/view-stock.html" class="active"><i class="fas fa-boxes"></i> View Stock</a>
-    <a href="/supermarket-admin/sales.html"><i class="fas fa-shopping-cart"></i> Sell Item</a>
+    <a href="/supermarket-admin/view-stock.html"><i class="fas fa-boxes"></i> View Stock</a>
+    <a href="/supermarket-admin/sales.html" class="active"><i class="fas fa-shopping-cart"></i> Sell Item</a>
     <a href="/supermarket-admin/add-staff.html"><i class="fas fa-user-plus"></i> Add Staff</a>
-
     <button class="dark-toggle" id="sidebarDarkMode">🌙 Dark Mode</button>
     <button class="logout-btn" onclick="logout()">Logout</button>
   </aside>
 
-  <!-- ===== VIEW STOCK SECTION ===== -->
-  <section class="view-stock">
-    <h2><i class="fas fa-boxes"></i> Inventory Stock List</h2>
+  <!-- ===== SELL ITEM SECTION ===== -->
+  <section class="sell-item">
+    <h2><i class="fas fa-cash-register"></i> Record a Sale</h2>
 
-    <div class="controls">
-      <input type="text" id="searchInput" placeholder="🔍 Search products..." />
-      <select id="categoryFilter">
-        <option value="All">All Categories</option>
-        <option value="laptops">Laptops</option>
-        <option value="phones">Phones</option>
-        <option value="desktops">Desktops</option>
-        <option value="chargers">Chargers</option>
+    <form id="sellForm">
+      <label for="productSelect">Select Product:</label>
+      <select id="productSelect" required>
+        <option value="">-- Choose a Product --</option>
       </select>
-    </div>
 
-    <table>
+      <label for="quantitySold">Quantity Sold:</label>
+      <input type="number" id="quantitySold" min="1" required />
+
+      <button type="submit" class="sell-btn">Sell Item</button>
+    </form>
+
+    <div id="saleSummary" class="sale-summary"></div>
+  </section>
+
+  <!-- ===== SALES HISTORY SECTION ===== -->
+  <section class="sales-history">
+    <h3>🧾 Sales History</h3>
+    <table class="sales-table">
       <thead>
         <tr>
           <th>#</th>
           <th>Product</th>
           <th>Category</th>
-          <th>Price</th>
-          <th>Qty</th>
-          <th>Date Added</th>
+          <th>Quantity Sold</th>
+          <th>Total (₦)</th>
+          <th>Date</th>
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody id="stockBody"></tbody>
+      <tbody id="salesTableBody"></tbody>
     </table>
   </section>
 
-  <script src="../supermarket-js/view-stock.js"></script>
+  <script src="../supermarket-js/sales.js"></script>
   <script src="/supermarket-js/auth.js"></script>
 
 
