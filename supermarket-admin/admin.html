@@ -18,7 +18,7 @@
       <div class="logo-container">
         <img src="../assets/achietech.jpeg.jpg" alt="Achietch Logo" />
         <div class="logo-text">
-          <h1>ACHETECH</h1>
+          <h1>ACHIETECH</h1>
           <p>Home of Your Dream Gadget</p>
         </div>
       </div>
@@ -33,18 +33,19 @@
 
     <!-- Navigation Bar (desktop only) -->
     <nav class="nav-links">
-    <a href="./admin.html" class="active"><i class="fas fa-chart-line"></i> Dashboard</a>
-    <a href="./add-product.html"><i class="fas fa-plus-circle"></i> Add Product</a>
-    <a href="./view-stock.html"><i class="fas fa-boxes"></i> View Stock</a>
-    <a href="./sales.html"><i class="fas fa-shopping-cart"></i> Sell Item</a>
-    <a href="./add-staff.html"><i class="fas fa-user-plus"></i> Add Staff</a>
+      <a href="./admin.html" class="active"><i class="fas fa-chart-line"></i> Dashboard</a>
+      <a href="./add-product.html"><i class="fas fa-plus-circle"></i> Add Product</a>
+      <a href="./view-stock.html"><i class="fas fa-boxes"></i> View Stock</a>
+      <a href="./sales.html"><i class="fas fa-shopping-cart"></i> Sell Item</a>
+      <a href="./add-staff.html"><i class="fas fa-user-plus"></i> Add Staff</a>
+    </nav>
   </header>
 
   <!-- ===== SIDEBAR (mobile only) ===== -->
   <div class="sidebar" id="sidebar">
-     <button class="close-btn" id="closeSidebar">
+    <button class="close-btn" id="closeSidebar">
       <i class="fas fa-times"></i>
-     </button>
+    </button>
     <div class="logo-container">
       <img src="../assets/achietech.jpeg.jpg" alt="Achietch Logo" />
       <div class="logo-text">
@@ -89,6 +90,7 @@
         <i class="fas fa-exclamation-triangle"></i>
         <h3>Low Stock Alerts</h3>
         <p id="lowStockCount">0</p>
+        <button id="viewLowStockBtn" class="view-low-stock-btn">View Items</button>
       </div>
     </div>
 
@@ -98,9 +100,26 @@
     </section>
   </main>
 
+  <!-- ===== LOW STOCK MODAL ===== -->
+  <div id="lowStockModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>Low Stock Items</h2>
+      <table id="lowStockTable">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
   <script src="../supermarket-js/preload.js"></script>
   <script src="../supermarket-js/admin.js"></script>
   <script src="../supermarket-js/auth.js"></script>
-
 </body>
 </html>

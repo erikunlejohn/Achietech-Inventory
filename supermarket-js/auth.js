@@ -109,3 +109,5 @@ function getPermissions() {
   // For staff users
   return JSON.parse(localStorage.getItem("permissions")) || {};
 }
+
+

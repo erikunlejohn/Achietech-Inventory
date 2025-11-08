@@ -183,3 +183,27 @@ if (localStorage.getItem("darkMode") === "true") {
 
 darkModeToggle?.addEventListener("click", toggleDarkMode);
 sidebarDarkMode?.addEventListener("click", toggleDarkMode);
+
+
+// ======================= WELCOME TEXT =======================
+function initDashboard() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (!currentUser) {
+    window.location.href = "../index.html";
+    return;
+  }
+
+  // Capitalize first letter of username
+  const formattedName =
+    currentUser.username.charAt(0).toUpperCase() +
+    currentUser.username.slice(1).toLowerCase();
+
+  document.getElementById("welcomeText").textContent =
+    `Welcome, ${formattedName} (${currentUser.role})`;
+
+  loadDashboardStats();
+  setupAutoRefresh();
+}
+
+initDashboard();

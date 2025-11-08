@@ -300,6 +300,129 @@ body.dark-mode .recent-products li {
   color: #fff;
 }
 
+
+/* ======================= LOW STOCK MODAL ======================= */
+/* ======================= LOW STOCK MODAL ======================= */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  transition: all 0.3s ease;
+}
+
+.modal-content {
+  background-color: var(--card-bg, #fff); /* Match your dashboard card bg */
+  color: var(--text-color, #333);
+  margin: 10% auto;
+  padding: 0; /* remove default padding for gradient header */
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  animation: slideDown 0.3s ease;
+  overflow: hidden; /* for rounded corners with header */
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Modal Header with Purple Gradient */
+.modal-content h2 {
+  margin: 0;
+  padding: 15px 20px;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(90deg, #4C01FE, purple);
+}
+
+/* Close button inside header */
+.modal-content .close-btn {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #fff;
+  background: transparent;
+  border: none;
+}
+
+/* Table inside modal */
+#lowStockTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0 20px 0;
+}
+
+#lowStockTable th, #lowStockTable td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+#lowStockTable th {
+  background-color: var(--card-bg, #f4f4f4);
+}
+
+.low-stock-critical {
+  background-color: #f8d7da;
+  color: #721c24;
+  font-weight: bold;
+}
+
+.low-stock-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  font-weight: bold;
+}
+
+/* Button inside Low Stock Card */
+.view-low-stock-btn {
+  margin-top: 8px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #ff9800;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.view-low-stock-btn:hover {
+  background-color: #e68a00;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .modal-content {
+    margin: 20% auto;
+    width: 95%;
+  }
+
+  #lowStockTable th, #lowStockTable td {
+    font-size: 0.85rem;
+    padding: 6px;
+  }
+
+  .view-low-stock-btn {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+}
+
+
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   /* Hide navbar */
@@ -318,7 +441,7 @@ body.dark-mode .recent-products li {
 
   /* Sidebar dark + logout visible */
   #sidebarDarkMode,
-  aside .logout-btn {
+  .sidebar .logout-btn {
     display: block !important;
     width: 100%;
     margin-top: 10px;
@@ -327,9 +450,17 @@ body.dark-mode .recent-products li {
   }
 
   /* Hamburger under logo */
-  .top-bar {
+ /* .top-bar {
     flex-direction: column;
     align-items: flex-start;
+    gap: 6px;
+  } */
+
+  #welcomeText {
+    display: block;
+    margin-left: 0;
+    margin-top: 4px;
+    margin-right: 20px;
   }
 
   .logo-container {

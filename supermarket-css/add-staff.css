@@ -236,6 +236,7 @@ input:focus {
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 15px 20px;
+  
 }
 
 .permissions legend {
@@ -245,6 +246,7 @@ input:focus {
 }
 
 .checkbox-grid {
+  
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 10px;
@@ -338,7 +340,10 @@ body.dark-mode .staff-list-card {
 body.dark-mode .nav-links {
   background: linear-gradient(90deg, #6a00ff, #9b00cc);
 }
-
+body.dark-mode .nav-links a:hover {
+  background: #000;
+  color: #fff;
+}
 body.dark-mode input {
   background: #2a2a40;
   color: #fff;
@@ -362,7 +367,7 @@ body.dark-mode .staff-table td {
 @media (max-width: 768px) {
   /* Hide header logout + dark mode on mobile */
   
-  .dark-toggle,
+ header .dark-toggle,
   header .logout-btn {
     display: none !important;
   }
@@ -390,6 +395,22 @@ body.dark-mode .staff-table td {
   .staff-form-card {
     padding: 30px 20px;
   }
+  .staff-list-card {
+  
+  border-radius: 15px;
+  padding: 30px 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+.staff-table th,
+.staff-table td {
+  border-bottom: 1px solid #ccc;
+  padding: 5px;
+  text-align: left;
+  font-size: small;
+}
+
 }
 
 /* Extra small screens <480px */

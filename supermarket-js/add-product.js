@@ -1,4 +1,4 @@
-// ===== SIDEBAR TOGGLE =====
+// ======================= SIDEBAR TOGGLE =======================
 const menuToggle = document.getElementById("menuToggle");
 const sidebar = document.getElementById("sidebar");
 const closeSidebar = document.getElementById("closeSidebar");
@@ -11,26 +11,43 @@ closeSidebar?.addEventListener("click", () => sidebar.classList.remove("active")
 
 // Close sidebar when clicking outside
 document.addEventListener("click", e => {
-  if (sidebar.classList.contains("active") &&
-      !sidebar.contains(e.target) &&
-      !menuToggle.contains(e.target)) {
+  if (
+    sidebar.classList.contains("active") &&
+    !sidebar.contains(e.target) &&
+    !menuToggle.contains(e.target)
+  ) {
     sidebar.classList.remove("active");
   }
 });
 
 
-// ===== DARK MODE =====
-const darkModeToggle = document.getElementById("darkModeToggle");
-const sidebarDarkMode = document.getElementById("sidebarDarkMode");
+// ======================= DARK MODE (PERSISTENT + SAFE) =======================
+(function () {
+  const body = document.body;
+  const toggleTop = document.getElementById("darkModeToggle");        // top icon
+  const toggleSidebar = document.getElementById("sidebarDarkMode");   // sidebar icon
 
-function toggleDarkMode() {
-  document.body.classList.toggle("dark-mode");
-}
+  // Apply saved theme on page load
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
+  }
 
-darkModeToggle.addEventListener("click", toggleDarkMode);
-sidebarDarkMode.addEventListener("click", toggleDarkMode);
+  // Toggle function
+  function toggleDark() {
+    body.classList.toggle("dark-mode");
+    localStorage.setItem(
+      "theme",
+      body.classList.contains("dark-mode") ? "dark" : "light"
+    );
+  }
 
-// ===== ADD PRODUCT FORM HANDLING =====
+  // Event listeners
+  toggleTop?.addEventListener("click", toggleDark);
+  toggleSidebar?.addEventListener("click", toggleDark);
+})();
+
+
+// ======================= ADD PRODUCT FORM HANDLING =======================
 document.getElementById("addProductForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -45,46 +62,55 @@ document.getElementById("addProductForm").addEventListener("submit", function (e
     return;
   }
 
-  // Get existing products from localStorage
+  // Get existing products
   const products = JSON.parse(localStorage.getItem("products")) || [];
 
-  // Generate a unique incremental ID
-  const nextId = products.length > 0 ? Math.max(...products.map(p => p.id || 0)) + 1 : 1;
+  // Create new product object
+  const newProduct = {
+    id: Date.now(), // Unique ID
+    name,
+    category,
+    price,
+    quantity,
+    dateAdded: new Date().toISOString().split("T")[0] // YYYY-MM-DD
+  };
 
-
- // Create new product object
-const newProduct = {
-  id: Date.now(), // ensures unique ID for editing/deleting
-  name,
-  category,
-  price,
-  quantity,
-  dateAdded: new Date().toISOString().split("T")[0] // formatted YYYY-MM-DD
-};
-
-
-  // Add new product to array
+  // Add to list
   products.push(newProduct);
 
-  // Save updated list back to localStorage
+  // Save
   localStorage.setItem("products", JSON.stringify(products));
 
-  // Update dashboard auto-refresh timestamp
+  // Dashboard auto-refresh
   localStorage.setItem("lastUpdated", Date.now());
 
-  // Confirmation message
   alert("✅ Product added successfully!");
 
   // Reset form
   e.target.reset();
 });
-document.addEventListener("DOMContentLoaded", () => {
-  // ===== WELCOME TEXT =====
-  const welcomeText = document.getElementById("welcomeText");
-  const loggedInUser = localStorage.getItem("loggedInUser") || "Admin";
 
-  // Capitalize first letter (optional)
-  const displayName = loggedInUser.charAt(0).toUpperCase() + loggedInUser.slice(1);
 
-  welcomeText.textContent = `Welcome, ${displayName} 👋`;
-});
+// ======================= WELCOME TEXT =======================
+function initDashboard() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (!currentUser) {
+    window.location.href = "../index.html";
+    return;
+  }
+
+  // Capitalize first letter of username
+  const formattedName =
+    currentUser.username.charAt(0).toUpperCase() +
+    currentUser.username.slice(1).toLowerCase();
+
+  document.getElementById("welcomeText").textContent =
+    `Welcome, ${formattedName} (${currentUser.role})`;
+
+  loadDashboardStats();
+  setupAutoRefresh();
+}
+
+initDashboard();
+

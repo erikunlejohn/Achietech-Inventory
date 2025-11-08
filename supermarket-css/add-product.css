@@ -253,7 +253,19 @@ body.dark-mode .recent-products li {
 body.dark-mode .nav-links {
   background: linear-gradient(90deg, #4C01FE 100%, purple 0%);
 }
+body.dark-mode input, #category {
+  background: #2a2a40;
+  color: #fff;
+  border-color: #555;
+}
 
+body.dark-mode .add-product {
+  background: rgb(1, 1, 46);;
+  color: #fff;
+}
+body.dark-mode .add-product button:hover{
+  background: #000000
+}
 body.dark-mode .nav-links a:hover {
   background-color: #000000;
   color: #fff;
@@ -274,7 +286,13 @@ body.dark-mode .sidebar a:hover {
   header .logout-btn {
     display: none !important;
   }
-  
+
+
+  #welcomeText {
+    display: block;
+    margin-left: 0;
+    margin-top: 4px;
+  }
 
   .menu-toggle {
     display: block;

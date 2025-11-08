@@ -177,3 +177,49 @@ navLinks.forEach(link => {
     link.classList.add("active");
   }
 });
+
+
+// ======================= WELCOME TEXT =======================
+function initDashboard() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (!currentUser) {
+    window.location.href = "../index.html";
+    return;
+  }
+
+  // Capitalize first letter of username
+  const formattedName =
+    currentUser.username.charAt(0).toUpperCase() +
+    currentUser.username.slice(1).toLowerCase();
+
+  document.getElementById("welcomeText").textContent =
+    `Welcome, ${formattedName} (${currentUser.role})`;
+
+  loadDashboardStats();
+  setupAutoRefresh();
+}
+
+initDashboard();
+// ======================= WELCOME TEXT =======================
+function initDashboard() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (!currentUser) {
+    window.location.href = "../index.html";
+    return;
+  }
+
+  // Capitalize first letter of username
+  const formattedName =
+    currentUser.username.charAt(0).toUpperCase() +
+    currentUser.username.slice(1).toLowerCase();
+
+  document.getElementById("welcomeText").textContent =
+    `Welcome, ${formattedName} (${currentUser.role})`;
+
+  loadDashboardStats();
+  setupAutoRefresh();
+}
+
+initDashboard();
