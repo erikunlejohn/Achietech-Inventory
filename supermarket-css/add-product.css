@@ -16,13 +16,21 @@ header {
   z-index: 10;
 }
 
-/* ===== TOP BAR ===== */
-.top-bar {
+header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 30px;
+  padding: 10px 20px;
 }
+/* ===== FIX WELCOME TEXT RESPONSIVE ===== */
+.top-bar {
+  display: flex;
+  justify-content: space-between; /* Hamburger on left, welcome text right */
+  align-items: center;
+  flex-wrap: nowrap; /* Prevent wrapping */
+  gap: 10px;
+}
+
 
 .logo-container {
   display: flex;
@@ -361,8 +369,16 @@ body.dark-mode .sidebar a:hover {
   }
 
   #welcomeText {
-    font-size: 0.85rem;
+    max-width: calc(100% - 50px);
+    font-size: 0.8rem;
   }
+
+  .top-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
 
   .logo-text h1 {
     font-size: 1rem;

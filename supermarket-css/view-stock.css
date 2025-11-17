@@ -380,5 +380,31 @@ body.dark-mode .nav-links a:hover {
     right: 15px;
     top: 10px;
   }
+   #welcomeText {
+    max-width: calc(100% - 60px);
+    font-size: 0.85rem;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
 }
+
+
+
+@media (max-width: 480px) {
+  #welcomeText {
+    max-width: calc(100% - 55px);
+    font-size: 0.8rem;
+  }
+
+  .top-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+
 /* ===== END OF FILE ===== */

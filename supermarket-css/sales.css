@@ -21,7 +21,11 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap; /* allow items to move to next line if needed */
+  gap: 8px;
+  position: relative;
 }
+
 
 /* ===== LOGO ===== */
 .logo-container {
@@ -52,7 +56,12 @@ header {
 #welcomeText {
   font-size: 0.9rem;
   color: #555;
+  max-width: 100%; /* allow full width */
+  overflow: visible; /* don't hide text */
+  white-space: normal; /* allow wrapping */
+  font-size: 0.9rem;
 }
+
 
 /* ===== NAVBAR ===== */
 .nav-links {
@@ -159,6 +168,15 @@ header {
   position: absolute;
   top: 12px;
   right: 20px;
+}
+
+
+#welcomeText {
+  max-width: calc(100% - 50px); /* leave space for menu button */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.9rem;
 }
 
 /* ===== SIDEBAR CLOSE BUTTON ===== */
@@ -365,13 +383,16 @@ body.dark-mode .sales-table tr:hover {
 
   /* Move welcome text under logo */
  
-
   #welcomeText {
-    display: block;
-    margin-left: 0;
-    margin-top: 4px;
-    margin-right: 30px;
-    margin-bottom: 20px;
+    max-width: calc(100% - 60px);
+    font-size: 0.85rem;
+  }
+
+  .menu-toggle { display: block; }
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
   }
 
   .sell-item,
@@ -400,10 +421,19 @@ body.dark-mode .sales-table tr:hover {
     padding: 8px 12px;
   }
 
-  #welcomeText {
-    font-size: 0.85rem;
+
+   #welcomeText {
+    max-width: calc(100% - 55px);
+    font-size: 0.8rem;
   }
 
+  .top-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    padding: 8px 12px;
+  }
   .logo-text h1 {
     font-size: 1rem;
   }

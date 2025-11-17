@@ -167,22 +167,32 @@ document.addEventListener("click", (e) => {
 });
 
 
-// ===== DARK MODE =====
-const darkModeToggle = document.getElementById("darkModeToggle");
-const sidebarDarkMode = document.getElementById("sidebarDarkMode");
+// ======================= DARK MODE (PERSISTENT + SAFE) =======================
+(function () {
+  const body = document.body;
+  const toggleTop = document.getElementById("darkModeToggle");        // top icon
+  const toggleSidebar = document.getElementById("sidebarDarkMode");   // sidebar icon
 
-function toggleDarkMode() {
-  document.body.classList.toggle("dark-mode");
-  localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
-}
+  // Apply saved theme on page load
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
+  }
 
-// Apply saved mode on load
-if (localStorage.getItem("darkMode") === "true") {
-  document.body.classList.add("dark-mode");
-}
+  // Toggle function
+  function toggleDark() {
+    body.classList.toggle("dark-mode");
+    localStorage.setItem(
+      "theme",
+      body.classList.contains("dark-mode") ? "dark" : "light"
+    );
+  }
 
-darkModeToggle?.addEventListener("click", toggleDarkMode);
-sidebarDarkMode?.addEventListener("click", toggleDarkMode);
+  // Event listeners
+  toggleTop?.addEventListener("click", toggleDark);
+  toggleSidebar?.addEventListener("click", toggleDark);
+})();
+
+
 
 
 // ======================= WELCOME TEXT =======================
@@ -207,3 +217,14 @@ function initDashboard() {
 }
 
 initDashboard();
+
+
+const perms = getPermissions();
+
+if (!perms.permEditProduct) {
+  document.querySelectorAll(".edit-btn").forEach(btn => btn.style.display = "none");
+}
+
+if (!perms.permDeleteProduct) {
+  document.querySelectorAll(".delete-btn").forEach(btn => btn.style.display = "none");
+}

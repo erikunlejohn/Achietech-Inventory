@@ -6,17 +6,15 @@
   <title>Achietech — Admin Login</title>
   <link rel="stylesheet" href="./supermarket-css/login.css" />
 </head>
-
 <body>
   <div class="login-box" role="form" aria-labelledby="loginTitle">
     <h2 id="loginTitle">Admin Login</h2>
 
     <div id="message" class="msg" aria-live="polite"></div>
 
-    <!-- Wrap inputs inside a form with id="loginForm" -->
-    <form id="loginForm">
-      <input type="text" id="username" placeholder="Username" autocomplete="username" required />
-      <input type="password" id="password" placeholder="Password" autocomplete="current-password" required />
+    <form id="loginForm" novalidate>
+      <input type="text" id="username" placeholder="Username" autocomplete="username" aria-required="true" required />
+      <input type="password" id="password" placeholder="Password" autocomplete="current-password" aria-required="true" required />
 
       <button id="loginBtn" type="submit">Login</button>
     </form>

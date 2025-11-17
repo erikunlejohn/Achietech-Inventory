@@ -143,6 +143,36 @@ document.addEventListener("DOMContentLoaded", () => {
   renderSalesTable();
 }); // DOMContentLoaded end
 
+
+
+
+// ======================= DARK MODE (PERSISTENT + SAFE) =======================
+(function () {
+  const body = document.body;
+  const toggleTop = document.getElementById("darkModeToggle");        // top icon
+  const toggleSidebar = document.getElementById("sidebarDarkMode");   // sidebar icon
+
+  // Apply saved theme on page load
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
+  }
+
+  // Toggle function
+  function toggleDark() {
+    body.classList.toggle("dark-mode");
+    localStorage.setItem(
+      "theme",
+      body.classList.contains("dark-mode") ? "dark" : "light"
+    );
+  }
+
+  // Event listeners
+  toggleTop?.addEventListener("click", toggleDark);
+  toggleSidebar?.addEventListener("click", toggleDark);
+})();
+
+
+
 // ===== SIDEBAR & DARK MODE (kept at file bottom) =====
 const menuToggle = document.getElementById("menuToggle");
 const sidebar = document.getElementById("sidebar");
@@ -178,6 +208,32 @@ navLinks.forEach(link => {
   }
 });
 
+// ======================= DARK MODE (PERSISTENT + SAFE) =======================
+(function () {
+  const body = document.body;
+  const toggleTop = document.getElementById("darkModeToggle");        // top icon
+  const toggleSidebar = document.getElementById("sidebarDarkMode");   // sidebar icon
+
+  // Apply saved theme on page load
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
+  }
+
+  // Toggle function
+  function toggleDark() {
+    body.classList.toggle("dark-mode");
+    localStorage.setItem(
+      "theme",
+      body.classList.contains("dark-mode") ? "dark" : "light"
+    );
+  }
+
+  // Event listeners
+  toggleTop?.addEventListener("click", toggleDark);
+  toggleSidebar?.addEventListener("click", toggleDark);
+})();
+
+
 
 // ======================= WELCOME TEXT =======================
 function initDashboard() {
@@ -223,3 +279,14 @@ function initDashboard() {
 }
 
 initDashboard();
+
+
+const perms = getPermissions();
+
+if (!perms.permEditProduct) {
+  document.querySelectorAll(".edit-btn").forEach(btn => btn.style.display = "none");
+}
+
+if (!perms.permDeleteProduct) {
+  document.querySelectorAll(".delete-btn").forEach(btn => btn.style.display = "none");
+}

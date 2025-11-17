@@ -1,3 +1,5 @@
+
+
 // ======================= SIDEBAR TOGGLE =======================
 const menuToggle = document.getElementById("menuToggle");
 const sidebar = document.getElementById("sidebar");
