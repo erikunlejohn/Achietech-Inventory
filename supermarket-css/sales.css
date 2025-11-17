@@ -21,11 +21,19 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* allow items to move to next line if needed */
+  flex-wrap: nowrap; /* prevent wrapping */
   gap: 8px;
-  position: relative;
 }
 
+#welcomeText {
+  font-size: 0.9rem;
+  color: #555;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;      /* allow welcome text to take remaining space */
+  margin-left: 10px; /* optional spacing from logo */
+}
 
 /* ===== LOGO ===== */
 .logo-container {
@@ -50,16 +58,6 @@ header {
   margin: 0;
   font-size: 0.8rem;
   color: #555;
-}
-
-/* ===== WELCOME TEXT ===== */
-#welcomeText {
-  font-size: 0.9rem;
-  color: #555;
-  max-width: 100%; /* allow full width */
-  overflow: visible; /* don't hide text */
-  white-space: normal; /* allow wrapping */
-  font-size: 0.9rem;
 }
 
 
@@ -382,10 +380,15 @@ body.dark-mode .sales-table tr:hover {
   }
 
   /* Move welcome text under logo */
- 
+ .top-bar {
+    flex-wrap: wrap; /* allow wrapping only on mobile */
+    align-items: center;
+  }
+
   #welcomeText {
-    max-width: calc(100% - 60px);
-    font-size: 0.85rem;
+    max-width: 100%;
+    white-space: normal;
+    margin-left: 0;
   }
 
   .menu-toggle { display: block; }

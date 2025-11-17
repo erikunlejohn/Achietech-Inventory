@@ -199,22 +199,6 @@ function showToast(message, type = "success") {
   setTimeout(() => toast.remove(), 3000);
 }
 
-// ======================= DARK MODE (Persistent + Safe) =======================
-(function () {
-  const body = document.body;
-  const toggleTop = document.getElementById("darkModeToggle");
-  const toggleSidebar = document.getElementById("sidebarDarkMode");
-
-  if (localStorage.getItem("theme") === "dark") body.classList.add("dark-mode");
-
-  function toggleDark() {
-    body.classList.toggle("dark-mode");
-    localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
-  }
-
-  toggleTop?.addEventListener("click", toggleDark);
-  toggleSidebar?.addEventListener("click", toggleDark);
-})();
 
 // ======================= INITIALIZATION =======================
 displayStaffTable();
@@ -227,15 +211,7 @@ menuToggle?.addEventListener("click", () => sidebar?.classList.add("active"));
 closeSidebar?.addEventListener("click", () => sidebar?.classList.remove("active"));
 document.querySelectorAll(".sidebar a").forEach(link => link.addEventListener("click", () => sidebar?.classList.remove("active")));
 
-const darkModeToggle = document.getElementById("darkModeToggle");
-const sidebarDarkMode = document.getElementById("sidebarDarkMode");
-function toggleDarkMode() {
-  document.body.classList.toggle("dark-mode");
-  localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
-}
-if (localStorage.getItem("darkMode") === "true") document.body.classList.add("dark-mode");
-darkModeToggle?.addEventListener("click", toggleDarkMode);
-sidebarDarkMode?.addEventListener("click", toggleDarkMode);
+
 // Close sidebar when clicking outside
 document.addEventListener("click", e => {
   if (sidebar.classList.contains("active") &&
@@ -269,5 +245,29 @@ document.addEventListener("click", e => {
   toggleTop?.addEventListener("click", toggleDark);
   toggleSidebar?.addEventListener("click", toggleDark);
 })();
+
+
+// ======================= WELCOME TEXT =======================
+function initDashboard() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (!currentUser) {
+    window.location.href = "../index.html";
+    return;
+  }
+
+  // Capitalize first letter of username
+  const formattedName =
+    currentUser.username.charAt(0).toUpperCase() +
+    currentUser.username.slice(1).toLowerCase();
+
+  document.getElementById("welcomeText").textContent =
+    `Welcome, ${formattedName} (${currentUser.role})`;
+
+  loadDashboardStats();
+  setupAutoRefresh();
+}
+
+initDashboard();
 
 

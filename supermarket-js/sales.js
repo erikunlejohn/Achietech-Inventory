@@ -182,15 +182,6 @@ menuToggle?.addEventListener("click", () => sidebar?.classList.add("active"));
 closeSidebar?.addEventListener("click", () => sidebar?.classList.remove("active"));
 document.querySelectorAll(".sidebar a").forEach(link => link.addEventListener("click", () => sidebar?.classList.remove("active")));
 
-const darkModeToggle = document.getElementById("darkModeToggle");
-const sidebarDarkMode = document.getElementById("sidebarDarkMode");
-function toggleDarkMode() {
-  document.body.classList.toggle("dark-mode");
-  localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
-}
-if (localStorage.getItem("darkMode") === "true") document.body.classList.add("dark-mode");
-darkModeToggle?.addEventListener("click", toggleDarkMode);
-sidebarDarkMode?.addEventListener("click", toggleDarkMode);
 // Close sidebar when clicking outside
 document.addEventListener("click", e => {
   if (sidebar.classList.contains("active") &&
@@ -208,32 +199,6 @@ navLinks.forEach(link => {
   }
 });
 
-// ======================= DARK MODE (PERSISTENT + SAFE) =======================
-(function () {
-  const body = document.body;
-  const toggleTop = document.getElementById("darkModeToggle");        // top icon
-  const toggleSidebar = document.getElementById("sidebarDarkMode");   // sidebar icon
-
-  // Apply saved theme on page load
-  if (localStorage.getItem("theme") === "dark") {
-    body.classList.add("dark-mode");
-  }
-
-  // Toggle function
-  function toggleDark() {
-    body.classList.toggle("dark-mode");
-    localStorage.setItem(
-      "theme",
-      body.classList.contains("dark-mode") ? "dark" : "light"
-    );
-  }
-
-  // Event listeners
-  toggleTop?.addEventListener("click", toggleDark);
-  toggleSidebar?.addEventListener("click", toggleDark);
-})();
-
-
 
 // ======================= WELCOME TEXT =======================
 function initDashboard() {
@@ -257,36 +222,4 @@ function initDashboard() {
 }
 
 initDashboard();
-// ======================= WELCOME TEXT =======================
-function initDashboard() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-  if (!currentUser) {
-    window.location.href = "../index.html";
-    return;
-  }
-
-  // Capitalize first letter of username
-  const formattedName =
-    currentUser.username.charAt(0).toUpperCase() +
-    currentUser.username.slice(1).toLowerCase();
-
-  document.getElementById("welcomeText").textContent =
-    `Welcome, ${formattedName} (${currentUser.role})`;
-
-  loadDashboardStats();
-  setupAutoRefresh();
-}
-
-initDashboard();
-
-
-const perms = getPermissions();
-
-if (!perms.permEditProduct) {
-  document.querySelectorAll(".edit-btn").forEach(btn => btn.style.display = "none");
-}
-
-if (!perms.permDeleteProduct) {
-  document.querySelectorAll(".delete-btn").forEach(btn => btn.style.display = "none");
-}

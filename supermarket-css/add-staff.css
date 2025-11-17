@@ -85,7 +85,12 @@ header {
 }
 .menu-toggle {
   display: none;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
 }
+
 .dark-toggle {
   background: #DEE0DF;
   color: #000;

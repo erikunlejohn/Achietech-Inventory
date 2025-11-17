@@ -211,6 +211,11 @@ header .container {
   text-align: left;
 }
 
+.add-product .form-group #category {
+  background-color: #fff;
+  color: #000;
+}
+
 .add-product label {
   margin-bottom: 5px;
   font-weight: 500;
@@ -395,4 +400,8 @@ body.dark-mode .sidebar a:hover {
   .add-product p {
     font-size: 0.85rem;
   }
-}
+  .add-product input,
+  .add-product select {
+    font-size: 0.9rem;
+    padding: 8px;
+  } 
